@@ -19,6 +19,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.1
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -27,3 +28,21 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: AlfaSlabOne
+      fonts:
+        - asset: lib/src/fonts/AlfaSlabOne-Regular.ttf
+          weight: 700
+    - family: FiraCode
+      fonts:
+          - asset: lib/src/fonts/FiraCode-Bold.ttf
+            weight: 900
+          - asset: lib/src/fonts/FiraCode-Regular.ttf
+            weight: 400
+
+
+
+
+
+
+

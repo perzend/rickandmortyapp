@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:test_rm_api/src/routes/router.gr.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
+
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -10,12 +12,24 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       appBarBuilder: (_, tabsRouter) => AppBar(
-        backgroundColor: Colors.indigo,
-        title: const Text('Rick & Morty App'),
+        backgroundColor: Color(0xcd151414),
+        title:
+            Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Rick & Morty App'),
+              ElevatedButton(
+                  style:  ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF000000),),
+                  onPressed: (){},
+                  child:
+              Center(child:
+                Text('Log out'),)
+              )]
+            ),
         centerTitle: true,
         leading: const AutoLeadingButton(),
       ),
-      backgroundColor: Colors.indigo,
+      backgroundColor: Color(0xFF232323),
       routes: [
         CharactersRouter(),
         EpisodesRouter(),
