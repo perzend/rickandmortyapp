@@ -17,6 +17,7 @@ dependencies:
       url: git@github.com:Yash-Garg/RickandMorty-Dart-Wrapper.git
   auto_route: 5.0.1
   salomon_bottom_bar: ^3.3.1
+  cached_network_image: ^3.2.2
 
 
 

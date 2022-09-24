@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_rm_api/src/routes/router.gr.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import '../src/constants/colors.dart';
 
 
 
@@ -12,14 +13,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       appBarBuilder: (_, tabsRouter) => AppBar(
-        backgroundColor: Color(0xcd151414),
+        backgroundColor: AppColors.backgroundColor,
         title:
             Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Rick & Morty App'),
               ElevatedButton(
                   style:  ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF000000),),
+                      backgroundColor: Colors.black),
                   onPressed: (){},
                   child:
               Center(child:
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         leading: const AutoLeadingButton(),
       ),
-      backgroundColor: Color(0xFF232323),
+      backgroundColor: AppColors.appBarColor,
       routes: [
         CharactersRouter(),
         EpisodesRouter(),
