@@ -85,18 +85,6 @@ class CharactersPage extends StatelessWidget {
                             style: AppTextStyle.subTitle),
                             ),]),
 
-                        // Padding(padding: EdgeInsets.only(top:5.0),
-                        //   child:
-                        //     Text('Last known location:',
-                        //         style: TextStyle(color: Color(0xFF999797), fontSize: 12,fontWeight: FontWeight.w600,
-                        //           fontFamily: 'FiraCode',  ),),
-                        //     ),
-                        // Padding(padding: EdgeInsets.only(top:5.0),
-                        //   child:
-                        //   Text(characters[index].location.name,
-                        //     style: TextStyle(color: Colors.white, fontSize: 14,fontWeight: FontWeight.w400,
-                        //       fontFamily: 'FiraCode',  ),),
-                        // ),
                         Padding(padding: EdgeInsets.only(top:5.0),
                           child:
                           Text('First seen in:',

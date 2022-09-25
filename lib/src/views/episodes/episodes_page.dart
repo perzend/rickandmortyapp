@@ -7,6 +7,7 @@ import '../../globals.dart';
 import '../../routes/router.gr.dart';
 import '../../constants/colors.dart';
 
+
 class EpisodesPage extends StatelessWidget {
   const EpisodesPage({Key? key}) : super(key: key);
 
