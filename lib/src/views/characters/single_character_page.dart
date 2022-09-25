@@ -36,7 +36,7 @@ class SingleCharacterPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10), color: AppColors.cardColor,),
                       width:double.infinity,
                       child:
-                      Expanded(
+                          Expanded(
                         child:
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,34 +126,21 @@ class SingleCharacterPage extends StatelessWidget {
                           Row( crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                           Text('list of episodes with this character:',
-                              style: AppTextStyle.greyText),
+                              style: AppTextStyle.grayCharacterText),
                         ]),
                         ),
 
-    //
-    //                     ListView.builder(
-    //                     itemCount: character.episode.length,
-    //                     itemBuilder: (context, index) {
-    //                     return GestureDetector(
-    //                     child: Container( decoration: BoxDecoration(
-    // borderRadius: BorderRadius.circular(10), color: AppColors.cardColor,),
-    // height: 150,
-    // margin: EdgeInsets.all(5.0),
-    // // padding: EdgeInsets.all(10.0),
-    // child: Row(
-    // mainAxisAlignment: MainAxisAlignment.start,
-    // children: [
-    //   Text(character.episode[index]),
-    //                       ]
-    //                       ) ));
-    //                     }
-    //                     )
+
 
                       ],
                     ),
                     ),
-                  )
-              );
+
+                  ),
+
+
+
+                );
 
             }
 });}}
