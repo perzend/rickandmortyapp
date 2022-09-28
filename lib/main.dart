@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'src/routes/router.gr.dart';
 
-import '../src/form_store.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -174,21 +172,6 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   }
 }
 
-//потом удалить
-// class SecondPage extends StatelessWidget{
-//   const SecondPage({Key? key}):super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Second Page'),
-//       ),
-//       body: Center(
-//         child: Container(color: Colors.green,width: 30.0,height: 30.0,),
-//       ),
-//     );
-//   }
-// }
 
 class AppWidget extends StatelessWidget {
   final _appRouter = AppRouter();
@@ -196,7 +179,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+      SystemUiOverlayStyle(statusBarColor: Colors.black45),
     );
 
     return MaterialApp.router(

@@ -17,9 +17,6 @@ dependencies:
       url: git@github.com:Yash-Garg/RickandMorty-Dart-Wrapper.git
   auto_route: 5.0.1
   salomon_bottom_bar: ^3.3.1
-  mobx: ^2.0.6
-  flutter_mobx: ^2.0.6+1
-  validators2: ^3.0.0
 
 
 dev_dependencies:
@@ -31,3 +28,21 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: AlfaSlabOne
+      fonts:
+        - asset: lib/src/fonts/AlfaSlabOne-Regular.ttf
+          weight: 700
+    - family: FiraCode
+      fonts:
+          - asset: lib/src/fonts/FiraCode-Bold.ttf
+            weight: 900
+          - asset: lib/src/fonts/FiraCode-Regular.ttf
+            weight: 400
+
+
+
+
+
+
+
