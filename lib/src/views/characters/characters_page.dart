@@ -38,6 +38,8 @@ class CharactersPage extends StatelessWidget {
           return ListView.builder(
             itemCount: characters.length,
             itemBuilder: (context, index) {
+             var urlFirstEpisode=characters[index].episode[0];
+             var idFirstEpisode=int.parse(urlFirstEpisode.substring(urlFirstEpisode.lastIndexOf('/') + 1));
               return GestureDetector(
               child:
                 Container( decoration: BoxDecoration(
@@ -94,20 +96,14 @@ class CharactersPage extends StatelessWidget {
                           child:
                               //я тут скорее всего извращаюсь очень сильно =(
                             FutureBuilder<List<Episode>>(
-                            future: episodeClass.getAllEpisodes(),
+                            future: episodeClass.getListOfEpisodes([idFirstEpisode]),
                             builder: (context, snapshot) {
                             if (snapshot.connectionState == ConnectionState.waiting) {
                             return Center(child: CircularProgressIndicator());
                             } else if (snapshot.hasError || snapshot.data == null) {
                             return Center(child: Text('Error Loading Data.'));
                             } else {
-                            var episodes = snapshot.data!;
-                            var episode;
-                            for (var i in episodes){
-                              if (i.url == characters[index].episode[0]){
-                                episode= i;
-                              }
-                            }
+                            var episode = snapshot.data![0];
                             return Text(episode.name, style: AppTextStyle.usualText);
                             } }),
                         ),
