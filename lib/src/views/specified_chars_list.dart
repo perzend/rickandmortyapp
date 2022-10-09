@@ -33,7 +33,7 @@ class SpecifiedCharacterListView extends StatelessWidget {
                 onTap: () => AutoRouter.of(context).navigate(
                   CharactersRouter(
                     children: [
-                      SingleCharacterRoute(characterId: characters[index].id),
+                      SingleCharacterRoute(character: characters[index]),
                     ],
                   ),
                 ),

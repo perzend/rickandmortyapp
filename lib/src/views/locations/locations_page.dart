@@ -27,7 +27,7 @@ class LocationsPage extends StatelessWidget {
               return GestureDetector(
                 onTap: () => AutoRouter.of(context).push(
                   SingleLocationRoute(
-                    locationId: locations[index].id,
+                    location: locations[index],
                   ),
                 ),
 
@@ -37,16 +37,14 @@ class LocationsPage extends StatelessWidget {
                   margin: EdgeInsets.all(5.0),
                   padding: EdgeInsets.all(10.0),
                   child:
-                  Expanded(child:
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(locations[index].name, style: AppTextStyle.mainTitle,),
+                      Text(locations[index].name, style: AppTextStyle.mainTitle,textAlign: TextAlign.center,),
                       Text('The type of the location:',style: AppTextStyle.greyText,),
                       Text(locations[index].type, style: AppTextStyle.usualText,),
 
                     ],),
-                  ),
                 ),
               );
             },

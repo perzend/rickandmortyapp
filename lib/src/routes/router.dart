@@ -23,7 +23,7 @@ import '../views/locations/single_location_page.dart';
           page: EmptyRouterPage,
           children: [
             AutoRoute(path: '', page: CharactersPage),
-            AutoRoute(path: ':characterId', page: SingleCharacterPage),
+            AutoRoute(path: ':character', page: SingleCharacterPage),
           ],
         ),
         AutoRoute(
@@ -32,7 +32,7 @@ import '../views/locations/single_location_page.dart';
           page: EmptyRouterPage,
           children: [
             AutoRoute(path: '', page: EpisodesPage),
-            AutoRoute(path: ':episodeId', page: SingleEpisodePage),
+            AutoRoute(path: ':episode', page: SingleEpisodePage),
           ],
         ),
         AutoRoute(
@@ -41,7 +41,7 @@ import '../views/locations/single_location_page.dart';
           page: EmptyRouterPage,
           children: [
             AutoRoute(path: '', page: LocationsPage),
-            AutoRoute(path: ':locationId', page: SingleLocationPage),
+            AutoRoute(path: ':location', page: SingleLocationPage),
           ],
         ),
         AutoRoute(

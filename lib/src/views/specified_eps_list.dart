@@ -31,7 +31,7 @@ class SpecifiedEpisodeListView extends StatelessWidget {
                 onTap: () => AutoRouter.of(context).navigate(
                   EpisodesRouter(
                     children: [
-                      SingleEpisodeRoute(episodeId: episodes[index].id),
+                      SingleEpisodeRoute(episode: episodes[index]),
                     ],
                   ),
                 ),

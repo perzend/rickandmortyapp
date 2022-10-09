@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:test_rm_api/src/constants/colors.dart';
 
 import 'src/form_store.dart';
 import 'src/routes/router.gr.dart';
@@ -53,11 +54,6 @@ class AuthenticationPage extends StatefulWidget {
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
-//old code, delete later
-//   AuthFormDate _formState=AuthFormDate(login: '', password: '');
-//   _submit(){
-//     print(_formState.login);
-//   }
 
   final store = FormStore();
 
@@ -78,7 +74,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
     return Scaffold(
       appBar: AppBar(
-        // title: Text(widget.title),
+        backgroundColor: AppColors.backgroundColor,
       ),
       body: Center(
         child: Padding (padding: const EdgeInsets.only(top: 10.0),
@@ -150,6 +146,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                         Padding (padding: const EdgeInsets.only(top: 5.0),
                           child:
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: AppColors.backgroundColor),
                               onPressed:() {store.validateAll;
                               if (store.validateAll()){
                                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AppWidget()));

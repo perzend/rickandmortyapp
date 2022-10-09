@@ -69,13 +69,13 @@ class AppRouter extends _i10.RootStackRouter {
     SingleCharacterRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<SingleCharacterRouteArgs>(
-          orElse: () => SingleCharacterRouteArgs(
-              characterId: pathParams.getInt('characterId')));
+          orElse: () =>
+              SingleCharacterRouteArgs(character: pathParams.get('character')));
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i5.SingleCharacterPage(
           key: args.key,
-          characterId: args.characterId,
+          character: args.character,
         ),
       );
     },
@@ -88,13 +88,13 @@ class AppRouter extends _i10.RootStackRouter {
     SingleEpisodeRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<SingleEpisodeRouteArgs>(
-          orElse: () => SingleEpisodeRouteArgs(
-              episodeId: pathParams.getInt('episodeId')));
+          orElse: () =>
+              SingleEpisodeRouteArgs(episode: pathParams.get('episode')));
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i7.SingleEpisodePage(
           key: args.key,
-          episodeId: args.episodeId,
+          episode: args.episode,
         ),
       );
     },
@@ -107,13 +107,13 @@ class AppRouter extends _i10.RootStackRouter {
     SingleLocationRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<SingleLocationRouteArgs>(
-          orElse: () => SingleLocationRouteArgs(
-              locationId: pathParams.getInt('locationId')));
+          orElse: () =>
+              SingleLocationRouteArgs(location: pathParams.get('location')));
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i9.SingleLocationPage(
           key: args.key,
-          locationId: args.locationId,
+          location: args.location,
         ),
       );
     },
@@ -137,7 +137,7 @@ class AppRouter extends _i10.RootStackRouter {
                 ),
                 _i10.RouteConfig(
                   SingleCharacterRoute.name,
-                  path: ':characterId',
+                  path: ':character',
                   parent: CharactersRouter.name,
                 ),
               ],
@@ -154,7 +154,7 @@ class AppRouter extends _i10.RootStackRouter {
                 ),
                 _i10.RouteConfig(
                   SingleEpisodeRoute.name,
-                  path: ':episodeId',
+                  path: ':episode',
                   parent: EpisodesRouter.name,
                 ),
               ],
@@ -171,7 +171,7 @@ class AppRouter extends _i10.RootStackRouter {
                 ),
                 _i10.RouteConfig(
                   SingleLocationRoute.name,
-                  path: ':locationId',
+                  path: ':location',
                   parent: LocationsRouter.name,
                 ),
               ],
@@ -268,15 +268,15 @@ class SingleCharacterRoute
     extends _i10.PageRouteInfo<SingleCharacterRouteArgs> {
   SingleCharacterRoute({
     _i11.Key? key,
-    required int characterId,
+    required dynamic character,
   }) : super(
           SingleCharacterRoute.name,
-          path: ':characterId',
+          path: ':character',
           args: SingleCharacterRouteArgs(
             key: key,
-            characterId: characterId,
+            character: character,
           ),
-          rawPathParams: {'characterId': characterId},
+          rawPathParams: {'character': character},
         );
 
   static const String name = 'SingleCharacterRoute';
@@ -285,16 +285,16 @@ class SingleCharacterRoute
 class SingleCharacterRouteArgs {
   const SingleCharacterRouteArgs({
     this.key,
-    required this.characterId,
+    required this.character,
   });
 
   final _i11.Key? key;
 
-  final int characterId;
+  final dynamic character;
 
   @override
   String toString() {
-    return 'SingleCharacterRouteArgs{key: $key, characterId: $characterId}';
+    return 'SingleCharacterRouteArgs{key: $key, character: $character}';
   }
 }
 
@@ -315,15 +315,15 @@ class EpisodesRoute extends _i10.PageRouteInfo<void> {
 class SingleEpisodeRoute extends _i10.PageRouteInfo<SingleEpisodeRouteArgs> {
   SingleEpisodeRoute({
     _i11.Key? key,
-    required int episodeId,
+    required dynamic episode,
   }) : super(
           SingleEpisodeRoute.name,
-          path: ':episodeId',
+          path: ':episode',
           args: SingleEpisodeRouteArgs(
             key: key,
-            episodeId: episodeId,
+            episode: episode,
           ),
-          rawPathParams: {'episodeId': episodeId},
+          rawPathParams: {'episode': episode},
         );
 
   static const String name = 'SingleEpisodeRoute';
@@ -332,16 +332,16 @@ class SingleEpisodeRoute extends _i10.PageRouteInfo<SingleEpisodeRouteArgs> {
 class SingleEpisodeRouteArgs {
   const SingleEpisodeRouteArgs({
     this.key,
-    required this.episodeId,
+    required this.episode,
   });
 
   final _i11.Key? key;
 
-  final int episodeId;
+  final dynamic episode;
 
   @override
   String toString() {
-    return 'SingleEpisodeRouteArgs{key: $key, episodeId: $episodeId}';
+    return 'SingleEpisodeRouteArgs{key: $key, episode: $episode}';
   }
 }
 
@@ -362,15 +362,15 @@ class LocationsRoute extends _i10.PageRouteInfo<void> {
 class SingleLocationRoute extends _i10.PageRouteInfo<SingleLocationRouteArgs> {
   SingleLocationRoute({
     _i11.Key? key,
-    required int locationId,
+    required dynamic location,
   }) : super(
           SingleLocationRoute.name,
-          path: ':locationId',
+          path: ':location',
           args: SingleLocationRouteArgs(
             key: key,
-            locationId: locationId,
+            location: location,
           ),
-          rawPathParams: {'locationId': locationId},
+          rawPathParams: {'location': location},
         );
 
   static const String name = 'SingleLocationRoute';
@@ -379,15 +379,15 @@ class SingleLocationRoute extends _i10.PageRouteInfo<SingleLocationRouteArgs> {
 class SingleLocationRouteArgs {
   const SingleLocationRouteArgs({
     this.key,
-    required this.locationId,
+    required this.location,
   });
 
   final _i11.Key? key;
 
-  final int locationId;
+  final dynamic location;
 
   @override
   String toString() {
-    return 'SingleLocationRouteArgs{key: $key, locationId: $locationId}';
+    return 'SingleLocationRouteArgs{key: $key, location: $location}';
   }
 }

@@ -8,32 +8,25 @@ import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 class SingleLocationPage extends StatelessWidget {
   const SingleLocationPage({
     Key? key,
-    @PathParam() required this.locationId,
+    @PathParam() required this.location,
   }) : super(key: key);
-  final int locationId;
+  final dynamic location;
 
   @override
   Widget build(BuildContext context) {
+    List<int> locationCharactersId = [];
+    for (var el in location.residents) {
+      var id = el.substring(el.lastIndexOf('/') + 1);
+      locationCharactersId.add(int.parse(id));
+    }
     return
-      FutureBuilder<List<Location>>(
-          future: locationClass.getListOfLocations([locationId]),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError || snapshot.data == null) {
-              return Center(child: Text('Error Loading Data.'));
-            } else {
-              var location = snapshot.data![0];
-
-              return
                 Scaffold(backgroundColor: AppColors.backgroundColor, body:
-                Container( margin: EdgeInsets.all(10.0),
-                  padding: EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10), color: AppColors.cardColor,),
-                  width:double.infinity,
-                  child:
-                  Expanded(
+                SingleChildScrollView(
+                  child: Container( margin: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(15.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10), color: AppColors.cardColor,),
+                    width:double.infinity,
                     child:
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,10 +40,8 @@ class SingleLocationPage extends StatelessWidget {
 
                                 Text('The type of the location: ',
                                     style: AppTextStyle.grayCharacterText),
-                                Expanded(child:
                                 Text(location.type,
                                     style: AppTextStyle.usualText),
-                                ),
                               ]),
                         ),
 
@@ -61,10 +52,8 @@ class SingleLocationPage extends StatelessWidget {
 
                                 Text('The dimension in which\nthe location is located: ',
                                     style: AppTextStyle.grayCharacterText),
-                                Expanded(child:
                                 Text(location.dimension,
                                     style: AppTextStyle.usualText),
-                                ),
                               ]),
                         ),
 
@@ -72,10 +61,43 @@ class SingleLocationPage extends StatelessWidget {
                           child:
                           Row( crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('list of characters with this episode:',
+                                Text('List of character who have been\nlast seen in the location:',
                                     style: AppTextStyle.grayCharacterText),
                               ]),
                         ),
+
+                        FutureBuilder<List<Character>>(
+                            future: charactersClass.getListOfCharacters(locationCharactersId),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return Center(child: CircularProgressIndicator());
+                              } else if (snapshot.hasError || snapshot.data == null) {
+                                return Center(child: Text('Error Loading Data.'));
+                              } else {
+                                var characters = snapshot.data!;
+                                return ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: location.residents.length,
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                      return
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: AppColors.backgroundColor,
+                                          ),
+                                          margin: EdgeInsets.only(top: 10.0),
+                                          height: 100,
+                                          child: Center(
+                                              child: Text(
+                                                characters[index].name,
+                                                style: AppTextStyle.mainTitle,
+                                                textAlign: TextAlign.center,
+                                              )),
+                                        );
+                                    });
+                              }
+                            }),
 
                       ],
                     ),
@@ -83,7 +105,5 @@ class SingleLocationPage extends StatelessWidget {
                 )
                 );
 
-            }
-          });
   }
 }

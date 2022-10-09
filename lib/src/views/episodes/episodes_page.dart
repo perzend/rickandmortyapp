@@ -28,7 +28,7 @@ class EpisodesPage extends StatelessWidget {
               return GestureDetector(
                 onTap: () => AutoRouter.of(context).push(
                   SingleEpisodeRoute(
-                    episodeId: episodes[index].id,
+                    episode: episodes[index],
                   ),
                 ),
 
@@ -38,16 +38,14 @@ class EpisodesPage extends StatelessWidget {
               margin: EdgeInsets.all(5.0),
                   padding: EdgeInsets.all(10.0),
                   child:
-                  Expanded(child:
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(episodes[index].name, style: AppTextStyle.mainTitle,),
+                      Text(episodes[index].name, style: AppTextStyle.mainTitle, textAlign: TextAlign.center,),
                       Text('The air date of the episode:',style: AppTextStyle.greyText,),
                       Text(episodes[index].airDate, style: AppTextStyle.usualText,),
 
                     ],),
-                  ),
                 ),
               );
             },

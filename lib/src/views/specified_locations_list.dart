@@ -33,7 +33,7 @@ class SpecifiedLocationListView extends StatelessWidget {
                 onTap: () => AutoRouter.of(context).navigate(
                   LocationsRouter(
                     children: [
-                      SingleLocationRoute(locationId: locations[index].id),
+                      SingleLocationRoute(location: locations[index]),
                     ],
                   ),
                 ),

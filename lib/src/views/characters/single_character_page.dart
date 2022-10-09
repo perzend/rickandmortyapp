@@ -8,174 +8,152 @@ import '../../constants/text_style.dart';
 import '../characters/characters_page.dart';
 import '../episodes/single_episode_page.dart';
 
-var characterEpisodes =[];
+// var characterEpisodes = [];
+
 class SingleCharacterPage extends StatelessWidget {
   const SingleCharacterPage({
     Key? key,
-    @PathParam() required this.characterId,
+    @PathParam() required this.character,
   }) : super(key: key);
-  final int characterId;
+  final dynamic character;
 
   @override
   Widget build(BuildContext context) {
-    return
-      FutureBuilder<List<Character>>(
-          future: charactersClass.getListOfCharacters([characterId]),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError || snapshot.data == null) {
-              return Center(child: Text('Error Loading Data.'));
-            } else {
-              var character = snapshot.data![0];
-
-              return
-                Scaffold(backgroundColor: AppColors.backgroundColor, body:
-
-                  ListView.builder(
-                  itemCount: character.episode.length+1,
-                  itemBuilder: (context, index) {
-                      if (index == 0) {
-                        return
-                          Container( margin: EdgeInsets.all(10.0),
-                            padding: EdgeInsets.all(15.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10), color: AppColors.cardColor,),
-                            width:double.infinity,
-                            child:
-                                Expanded(
-                              child:
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-
-                              Text(character.name, style: AppTextStyle.mainCharacterTitle,),
-                              Padding(padding: EdgeInsets.only(top:15.0, bottom: 10.0),
-                              child:
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10.0),
-                                child:
-                                CachedNetworkImage(
-                                  height: 250,
-                                  imageUrl: character.image,
-                                  placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
-                                ),
-                              ),),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                  children:  [
-                                    Container(
-                                      margin: EdgeInsets.only(right: 5.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(90),
-                                        color: getStatus(character.status),
-                                      ),
-                                      width: 10,
-                                      height: 10,
-                                    ),
-
-                                      Text(character.status+' - '+character.species,
-                                          style: AppTextStyle.subTitle),
-                                  ]),
-                              Padding(padding: EdgeInsets.only(top:5.0),
-                                child:
-                                Row( crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-
-                                      Text('Gender: ',
-                                          style: AppTextStyle.grayCharacterText),
-                                      Expanded(child:
-                                      Text(character.gender,
-                                          style: AppTextStyle.usualText),
-                                      ),
-                                    ]),
-                              ),
-
-                              Padding(padding: EdgeInsets.only(top:5.0),
-                                child:
-                                Row( crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-
-                                      Text('Origin location: ',
-                                          style: AppTextStyle.grayCharacterText),
-                                      Expanded(child:
-                                      Text(character.origin.name,
-                                          style: AppTextStyle.usualText),
-                                      ),
-                                    ]),
-                              ),
-
-
-                              Padding(padding: EdgeInsets.only(top:5.0),
-                                child:
-                                    Row( crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-
-                                        Text('Last known location: ',
-                                            style: AppTextStyle.grayCharacterText),
-                                      Expanded(child:
-                                      Text(character.location.name,
-                                        style: AppTextStyle.usualText),
-                                ),
-                                        ]),
-                              ),
-
-
-
-
-
-                              Padding(padding: EdgeInsets.only(top:5.0),
-                                child:
-                                Row( crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                Text('list of episodes with this character:',
-                                    style: AppTextStyle.grayCharacterText),
-                              ]),
-                              ),
-                            ],
-                          ),
-                          ),
-
-                        );
-
-                      }
-                      else return GestureDetector(
-                          child:
-                          Container( decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10), color: AppColors.cardColor,),
-                    height: 70,
-                    padding: EdgeInsets.all(10.0),
-                    margin: EdgeInsets.all(5.0),
-                          child:
-                          FutureBuilder<List<Episode>>(
-                              future: episodeClass.getAllEpisodes(),
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState == ConnectionState.waiting) {
-                                  return Center(child: CircularProgressIndicator());
-                                } else if (snapshot.hasError || snapshot.data == null) {
-                                  return Center(child: Text('Error Loading Data.'));
-                                } else {
-                                  var episodes = snapshot.data!;
-                                  // var characterEpisodes =[];
-                                  for (int i = 0; i < episodes.length; i++){
-                                    if (episodes[i].url == character.episode[i]){
-                                      characterEpisodes.add(episodes[i]);
-                                    }
-                                  }
-                                  return Text(characterEpisodes[index-1].name, style: AppTextStyle.mainTitle);
-                                } }),
-                          ),
-                          onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SingleEpisodePage(episodeId: characterEpisodes[index-1].id) ));});
+    List<int> characterEpisodesId = [];
+    for (var el in character.episode) {
+      var id = el.substring(el.lastIndexOf('/') + 1);
+      characterEpisodesId.add(int.parse(id));
     }
-    )
-                );
+    return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(15.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.cardColor,
+          ),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                character.name,
+                style: AppTextStyle.mainCharacterTitle,
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 15.0, bottom: 10.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: CachedNetworkImage(
+                    height: 250,
+                    imageUrl: character.image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Container(
+                  margin: EdgeInsets.only(right: 5.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(90),
+                    color: getStatus(character.status),
+                  ),
+                  width: 10,
+                  height: 10,
+                ),
+                Text(character.status + ' - ' + character.species,
+                    style: AppTextStyle.subTitle),
+              ]),
+              Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Gender: ', style: AppTextStyle.grayCharacterText),
+                      Expanded(
+                        child: Text(character.gender,
+                            style: AppTextStyle.usualText),
+                      ),
+                    ]),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Origin location: ',
+                          style: AppTextStyle.grayCharacterText),
+                      Expanded(
+                        child: Text(character.origin.name,
+                            style: AppTextStyle.usualText),
+                      ),
+                    ]),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Last known location: ',
+                          style: AppTextStyle.grayCharacterText),
+                      Expanded(
+                        child: Text(character.location.name,
+                            style: AppTextStyle.usualText),
+                      ),
+                    ]),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('list of episodes with this character:',
+                          style: AppTextStyle.grayCharacterText),
+                    ]),
+              ),
 
-            }
-}
+              FutureBuilder<List<Episode>>(
+                  future: episodeClass.getListOfEpisodes(characterEpisodesId),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError || snapshot.data == null) {
+                      return Center(child: Text('Error Loading Data.'));
+                    } else {
+                      var episodes = snapshot.data!;
+                      //можно вынести в отдельный файл, пока оставила так, если захотим показывать доп инфу
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                          itemCount: character.episode.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return
+                                Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.backgroundColor,
+                              ),
+                              margin: EdgeInsets.only(top: 10.0),
+                              height: 100,
+                              child: Center(
+                                  child: Text(
+                                episodes[index].name,
+                                style: AppTextStyle.mainTitle,
+                                textAlign: TextAlign.center,
+                              )),
+                            );
+                          });
+                    }
+                  }),
+            ],
+          ),
+        ),
+      ),
+
 );
   }
 }

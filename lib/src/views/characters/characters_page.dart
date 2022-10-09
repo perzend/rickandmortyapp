@@ -121,7 +121,7 @@ class CharactersPage extends StatelessWidget {
                 ),
                 onTap: () => AutoRouter.of(context).push(
                   SingleCharacterRoute(
-                    characterId: characters[index].id,
+                    character: characters[index],
                   ),
                 ),
               );
