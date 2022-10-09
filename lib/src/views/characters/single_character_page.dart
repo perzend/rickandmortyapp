@@ -6,9 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
 import '../../constants/text_style.dart';
 import '../characters/characters_page.dart';
-import '../episodes/single_episode_page.dart';
-
-// var characterEpisodes = [];
+import '../empty_shimmer_objects.dart';
 
 class SingleCharacterPage extends StatelessWidget {
   const SingleCharacterPage({
@@ -120,12 +118,13 @@ class SingleCharacterPage extends StatelessWidget {
                   future: episodeClass.getListOfEpisodes(characterEpisodesId),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return
+                        EmptyShimmerList(count:character.episode.length);
+
                     } else if (snapshot.hasError || snapshot.data == null) {
                       return Center(child: Text('Error Loading Data.'));
                     } else {
                       var episodes = snapshot.data!;
-                      //можно вынести в отдельный файл, пока оставила так, если захотим показывать доп инфу
                       return ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                           itemCount: character.episode.length,

@@ -8,4 +8,6 @@ abstract class AppColors {
   static const deadColor = Color(0xFFCB051C);
   static const unknowColor = Color(0xFF7D71FF);
   static const cardColor = Color(0xFF494848);
+  static const simmerBaseColor = Color(0xFF808080);
+  static const simmerHighColor = Color(0xFFAFAFAF);
 }

@@ -6,7 +6,7 @@ import 'package:test_rm_api/src/constants/text_style.dart';
 import '../../globals.dart';
 import '../../routes/router.gr.dart';
 import '../../constants/colors.dart';
-
+import 'empty_episodes_page.dart';
 
 class EpisodesPage extends StatelessWidget {
   const EpisodesPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class EpisodesPage extends StatelessWidget {
       future: episodeClass.getAllEpisodes(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return EmptyEpisodesPage();
         } else if (snapshot.hasError || snapshot.data == null) {
           return Center(child: Text('Error Loading Data.'));
         } else {

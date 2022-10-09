@@ -6,6 +6,7 @@ import '../../globals.dart';
 import '../../routes/router.gr.dart';
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
+import 'empty_locations_page.dart';
 
 class LocationsPage extends StatelessWidget {
   const LocationsPage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class LocationsPage extends StatelessWidget {
       future: locationClass.getAllLocations(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return EmptyLocationsPage();
         } else if (snapshot.hasError || snapshot.data == null) {
           return Center(child: Text('Error Loading Data.'));
         } else {
