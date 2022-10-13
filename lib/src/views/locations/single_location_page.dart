@@ -4,6 +4,7 @@ import 'package:test_rm_api/src/globals.dart';
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
 import 'package:rick_and_morty_api/rick_and_morty_api.dart';
+import '../empty_shimmer_objects.dart';
 
 class SingleLocationPage extends StatelessWidget {
   const SingleLocationPage({
@@ -70,7 +71,8 @@ class SingleLocationPage extends StatelessWidget {
                             future: charactersClass.getListOfCharacters(locationCharactersId),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState == ConnectionState.waiting) {
-                                return Center(child: CircularProgressIndicator());
+                                return
+                                  EmptyShimmerList(count:location.residents.length);
                               } else if (snapshot.hasError || snapshot.data == null) {
                                 return Center(child: Text('Error Loading Data.'));
                               } else {

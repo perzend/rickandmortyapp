@@ -21,6 +21,7 @@ dependencies:
   cached_network_image: ^3.2.2
   mobx: ^2.1.0
   flutter_mobx: ^2.0.6+4
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
