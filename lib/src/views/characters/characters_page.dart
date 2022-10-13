@@ -39,8 +39,10 @@ class CharactersPage extends StatelessWidget {
           return ListView.builder(
             itemCount: characters.length,
             itemBuilder: (context, index) {
+
               var urlFirstEpisode=characters[index].episode[0];
               var idFirstEpisode=int.parse(urlFirstEpisode.substring(urlFirstEpisode.lastIndexOf('/') + 1));
+
               return GestureDetector(
                 child:
                 Container( decoration: BoxDecoration(
@@ -96,6 +98,7 @@ class CharactersPage extends StatelessWidget {
                             Padding(padding: EdgeInsets.only(top:5.0),
                               child:
                               //я тут скорее всего извращаюсь очень сильно =(
+
                               FutureBuilder<List<Episode>>(
                                   future: episodeClass.getListOfEpisodes([idFirstEpisode]),
                                   builder: (context, snapshot) {
@@ -108,6 +111,7 @@ class CharactersPage extends StatelessWidget {
                                       return Text(episode.name, style: AppTextStyle.usualText);
                                     } }),
                             ),
+
 
                           ],),
                           // ),
