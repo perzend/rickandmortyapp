@@ -53,8 +53,11 @@ class SingleLocationPage extends StatelessWidget {
 
                                 Text('The dimension in which\nthe location is located: ',
                                     style: AppTextStyle.grayCharacterText),
-                                Text(location.dimension,
-                                    style: AppTextStyle.usualText),
+                                
+                                Expanded(
+                                  child: Text(location.dimension,
+                                      style: AppTextStyle.usualText),
+                                ),
                               ]),
                         ),
 
